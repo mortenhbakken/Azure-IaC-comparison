@@ -13,5 +13,6 @@ If you have access to several subscriptions set the correct one as the current c
 ``az account set --subscription="<subscription_id>"``
 
 ``terraform init``
+
 ``terraform apply main.tf``
 
