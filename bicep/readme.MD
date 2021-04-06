@@ -3,6 +3,8 @@ Install latest version of [AZ CLI](https://docs.microsoft.com/en-us/cli/azure/in
 
 Install Bicep CLI with the following AZ CLI command: ``az bicep install`` 
 
+Install the "Bicep" VS Code extension
+
 This Bicep template is written for resource group deployment. Deploy using the following AZ CLI commands (assuming your shell is in this folder):
 
 ``az login``
