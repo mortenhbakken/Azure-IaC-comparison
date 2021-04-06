@@ -1,0 +1,77 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {"appServicePlanName": {
+        "type": "string",
+        "metadata": {
+            "description": "Name of the App Service Plan"
+        }
+    }, "appServiceName": {
+        "type": "string",
+        "metadata": {
+            "description": "Name of the App Service"
+        }
+    }},
+    "functions": [],
+    "variables": {},
+    "resources": [{
+        "name": "[parameters('appServicePlanName')]",
+        "type": "Microsoft.Web/serverfarms",
+        "apiVersion": "2018-02-01",
+        "location": "[resourceGroup().location]",
+        "sku": {
+            "name": "B1",
+            "capacity": 1
+        },
+        "tags": {
+            "displayName": "[parameters('appServicePlanName')]"
+        },
+        "properties": {
+            "name": "[parameters('appServicePlanName')]"
+        }
+    }, {
+        "name": "[parameters('appServiceName')]",
+        "type": "Microsoft.Web/sites",
+        "apiVersion": "2018-11-01",
+        "location": "[resourceGroup().location]",
+        "tags": {
+            "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('appServicePlanName'))]": "Resource",
+            "displayName": "[parameters('appServiceName')]"
+        },
+        "dependsOn": [
+            "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+        ],
+        "properties": {
+            "name": "[parameters('appServiceName')]",
+            "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+        }
+    }, {
+        "name": "azforumdemostorage",
+        "type": "Microsoft.Storage/storageAccounts",
+        "apiVersion": "2019-06-01",
+        "tags": {
+            "displayName": "azforumdemostorage"
+        },
+        "location": "[resourceGroup().location]",
+        "kind": "StorageV2",
+        "sku": {
+            "name": "Standard_LRS",
+            "tier": "Standard"
+        },
+        "resources": [
+            {
+                "type": "containers",
+                "apiVersion": "2021-01-01",
+                "name":"container1",
+                "dependsOn":["azforumdemostorage"]
+            },
+                        {
+                "type": "containers",
+                "apiVersion": "2021-01-01",
+                "name":"container2",
+                "dependsOn":["azforumdemostorage"]
+            }
+        ]
+    }   ],
+    "outputs": {}
+}
