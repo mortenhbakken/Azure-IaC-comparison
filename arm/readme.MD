@@ -1,5 +1,8 @@
 # Instructions
 Install latest version of [AZ CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+
+Install the "Azure  Resource Manager (ARM) Tools" VS Code extension
+
 This ARM template is written for resource group deployment. Deploy using the following AZ CLI commands (assuming your shell is in this folder):
 
 ``az login``
