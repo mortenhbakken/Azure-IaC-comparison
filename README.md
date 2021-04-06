@@ -6,6 +6,7 @@ Examples of how to solve the following scenario with Infrastructure as Code usin
 - Terraform
 - Pulumi (C#)
 
+# Scenario
 - App Service Plan (basic tier, 1 worker)
 - Web app with system assigned managed identity
 - Storage account with two containers
