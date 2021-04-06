@@ -13,4 +13,5 @@ If you have access to several subscriptions set the correct one as the current c
 ``az account set --subscription="<subscription_id>"``
 
 Run the shell script like this (exchange the command line parameters with your own values. Remember that app service name and storage account name must be unique): 
+
 ``./azdeploy.sh <location> <resource group name> <app service plan name> <app service name> <storage account name>``
